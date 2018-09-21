@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends "elpapp/base.html"%}
+{% block body_block %}
+{% load staticfiles %}
+
+
+
+    <div class="container">
+        <div class="jumbotron">
+          <h1>This is the main ELP page.</h1>
+          <img src="{% static "images/elp.jpg" %}" alt="haven't uploaded">
+          <a href="{% url 'elpapp:Cstudent' %}">Click here to register if you are a current student</a>
+          <a href="{% url 'elpapp:Cemployer' %}">Click here to register if you are a current employer</a>
+          <a href="{% url 'elpapp:sregister' %}">Click here to register if you are a new student</a>
+          <a href="{% url 'elpapp:eregister' %}">Click here to register if you are a new employer</a>
+
+          <h2>Employers who last accessed job access_records</h2>
+          <div class="django">
+            {% if access_records %}
+              <table>
+                <thead>
+                  <th>Employer name</th>
+                  <th>Date Accessed</th>
+                </thead>
+
+                {% for acc in access_records %}
+                  <tr>
+                    <td>{{acc.title}}</td>
+                    <td>{{acc.date}}</td>
+
+                  </tr>
+                {% endfor %}
+              </table>
+              {% else %}
+                <p>No Access Records</p>
+              {% endif %}
+          </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+</html>

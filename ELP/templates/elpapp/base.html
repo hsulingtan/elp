@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <ul class="navbar-nav">
+          <a class="navbar-brand" href="{% url 'index' %}">ELP</a>
+          <a class="nav-item nav-link" href="{% url 'admin:index' %}">Admin</a>
+          <a class="nav-item nav-link" href="{% url 'elpapp:Cemployer' %}">Employers</a>
+          <a class="nav-item nav-link" href="{% url 'elpapp:Cstudent' %}">Students</a>
+          <a class="nav-item nav-link" href="{% url 'elpapp:eregister' %}">New Employer</a>
+          <a class="nav-item nav-link" href="{% url 'elpapp:sregister' %}">New Student</a>
+
+          {% if user.is_authenticated %}
+            <a class="nav-link" href="{% url 'logout'%}">Logout</a>
+          {% else %}
+            <a class ="nav-link" href="{% url 'elpapp:user_login'%}">Login</a>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+
+      {% block body_block %}
+      <!--Anything outside of this will be inherited if you extend-->
+      {% endblock %}
+    </div>
+
+  </body>
+</html>
